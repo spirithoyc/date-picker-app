@@ -1,6 +1,13 @@
 import React from 'react';
-import './style/App.css';
+import './style/app.css';
+import DatePicker from './components/DatePicker';
 
-const App = () => <h1>Hello, React!</h1>;
-
+const App = () => {
+    return (
+        <div>
+            <h2>Date Picker</h2>
+            <DatePicker date = ""/>
+        </div>
+    );
+}
 export default App;

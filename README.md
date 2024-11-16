@@ -12,33 +12,41 @@
 
 # Folder structure
 
-src
-├── App.jsx
-├── index.js
-├── components
-│   ├── date-picker
-│   │   ├── date-picker.jsx
-│   │   ├── date-picker.css
+- src
+    - App.jsx
+    - index.js
+    - components
+        - date-picker
+            - date-picker.css
+            - date-picker.js
+        - DatePicker.jsx
+    - style
+        - App.css
 
 
 # Component date-picker
 ![alt text](image-1.png)
 ## composed
-<div> date-picker </div>
- |-- <div> calender control bar </div>
- |    |-- <div> prev </div> <!--&lt-->
- |    |-- <div> title </div> 
- |    |-- <div> next </div> <!--&gt-->
- |-- <div> calendar-container </div> 
+- `<div class="date-picker"/>`
+  - `<input type="text" placeholder="yyyy-mm-dd"/>`
+  - `<div class="calendar"/>`
+    - `<div class="calendar-control-bar"/>`  
+        - `<div class="calendar-prev"/>`  
+        **Content**: `&lt;` (left arrow).
+        - `<div class="calendar-title"/>`  
+        - `<div class="calendar-next"/>`  
+        **Content**: `&gt;` (right arrow).
+    - `<div class="calendar-container"></div>`  
+        **Description**: Contains the calendar view, such as days, months, or years.
 
 ## functions
 ```
-renderDatePicker(data:object, unit:str)
+renderCalendar(data:object, unit:str)
 renderCalendarDay(data:object)
 renderCalendarMonth(data:object)
 renderCalendarYear(data:object)
 onSelect(date:str)
-onClickCalendarTitle(data:object)
+onClickCalendarTitle(data:object, unit:str)
 onClickPrev(data:object)
 onClickNext(data:object)
 getCurrDate():str //yyyymmdd
