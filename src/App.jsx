@@ -6,7 +6,7 @@ const App = () => {
     return (
         <div>
             <h2>Date Picker</h2>
-            <DatePicker date = ""/>
+            <DatePicker date = "2024-11-18"/>
         </div>
     );
 }
