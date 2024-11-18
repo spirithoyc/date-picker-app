@@ -55,36 +55,53 @@ getCurrMonth():int //0~12
 getWeekDayIndex(date:str):int //0~6
 getDaysOfMonth(date:str):int //28~31
 ```
-
 # Learning Journey 
-### Stage 0: 
-Review pure JavaScript, CSS, and jQuery basics. **Output**: `test.html`
 
-| #  | **QQ**                                                                                                                                                    |
-|----|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1 | html5 root tag|
-| 2 | import jQuery|
-| 3 | jQuery create div component|
-| 4 | 修改 CSS style row flex, column 平均寬度比重|
-| 5 | background color 如果要有選取的 style, CSS attr 應該為何|
-| 6 | 如何讓 `newColumn.css({"background-color": 'red'})` 不蓋掉 hover 的動畫|
-| 7 | 如何增加 onclick，實現以下需求：|
-|   | - 點擊後 `css = selected`|
-|   | - 有無類似 `.calendar-column:selected` 的做法，避免重複定義 `.calendar-column` 和 `.calendar-column-selected`|
-| 8 | 將 `const months = ["Jan", "Feb", ...]` 修改為完整月份名稱|
-| 9 | css pointer
-|10 | 如何用 css 定義一個 div 使他的 child 按照每列四個換行 ex 
-|   | 1 2 3 4 
-|   | 5 6 7 8
-|11 | const calendar = {'year': 2024, 'month': 1, 'start': 0, 'days': 28,'selected': 10} 我只要改其中某個值怎麼寫? `{...calendar, {'month': 2}}`?
----
+### Stage 0
+Recap pure JavaScript, CSS, and jQuery basics.  
+**Output**: [Test Page](https://spirithoyc.github.io/date-picker-app/test.html)
+
+### Stage 1
+Learn how to build a React app without using the `create-react-app` command: set up `webpack.config.js`, build the app using `npm`, and configure the `dist` folder with `bundle.js`.  
+Create a GitHub repository and publish the app using `gh-pages`.
+
+### Stage 2
+Re-structure the app according to React principles:  
+- Move render logic to `DatePicker.jsx`  
+- Place utility functions for date counting and parsing into `component/date-picker-utils.js`  
+- Organize CSS files in `date-picker.css`  
+
+### Stage 3
+Implement basic logic including element display, hide, and control.  
+Define and apply CSS styles.
+
+### Stage 4
+Use GPT to adjust the CSS file, including removing redundant selectors and creating a responsive style for mobile display.
+
+### Stage 5 
+**Practicing efficiently generating basic functionality for a component with GPT's assistance.**
+
+Utilize the complete DatePicker to query Earthquake data via API:  
+`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${dateBegin}&endtime=${dateEnd}`  
+
+Provide clear instructions for GPT to generate:  
+- `models/earthquake.js`:  
+    - Fetch data  
+    - Parse data with a predefined format  
+- `Earthquake.jsx`  
+- `component/earthquake/earthquake.css`  
 
 
 
-### Stage 1 
 
-| #  | **QQ**                                                                                                                                                    |
-|----|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1  | QQ1                                                                                                                             |
-| 2  | QQ2                                                                                                                      |
-| 3  | QQ3                                                                                                   |
+
+
+
+
+
+
+
+
+
+
+
