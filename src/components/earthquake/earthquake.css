@@ -2,6 +2,9 @@
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 10px;
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
 }
 
 .earth-quake-data th,
@@ -9,6 +12,7 @@
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
+    word-wrap: break-word;
 }
 
 .earth-quake-data th {
@@ -30,12 +34,20 @@
 
 @media (max-width: 768px) {
     .earth-quake-data {
-        font-size: 12px;
+        font-size: 10pt;
+        width: 100%;
+        max-width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     .earth-quake-data th,
     .earth-quake-data td {
-        padding: 4px;
+        padding: 6px;
+        text-align: left;
+        word-break: break-word;
+        white-space: normal;
     }
 
     .load-more {
