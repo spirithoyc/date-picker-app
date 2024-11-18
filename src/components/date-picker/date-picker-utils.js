@@ -88,6 +88,23 @@ const genYearsArray = (year, selectedDate) => {
     return years;
 }
 
+const parseDateFormat = (year, month, day) => {
+    if (isNaN(year) || isNaN(month) || isNaN(day)) {
+        throw new Error("Invalid input: year, month, and day must be integers");
+    }
+    if (month == 0) {
+        year--;
+        month = 12;
+    } else if (month == 13) {
+        year++;
+        month = 1;
+    } 
+    const formattedYear = String(year);
+    const formattedMonth = String(month).padStart(2, "0"); // Ensure 2 digits
+    const formattedDay = String(day).padStart(2, "0"); // Ensure 2 digits
+
+    return `${formattedYear}-${formattedMonth}-${formattedDay}`;
+};
 
 /////////////////////////////////////////////////////////////////////////
 // private
@@ -200,5 +217,8 @@ export default {
     genDaysArray,
     genMonthsArray,
     genYearsArray,
-    getTitleOfDateCalendar
+    getTitleOfDateCalendar,
+    parseDateFormat,
+    isValidDate,
+    getYearMonthDay
 };

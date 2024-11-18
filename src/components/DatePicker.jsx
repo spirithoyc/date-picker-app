@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './date-picker/date-picker.css';
 import dateUtils from './date-picker/date-picker-utils';
-
-const DatePicker = ({ date }) => {
+import calendarIcon from '../resources/images/ico_calendar.png';
+const DatePicker = ({ date, onDateChange }) => {
     const TAG = 'DatePicker';
     const initialDate = date || dateUtils.getCurrDate(); // yyyy-mm-dd
     const [selectedDate, setSelectedDate] = useState(initialDate);
@@ -13,7 +13,9 @@ const DatePicker = ({ date }) => {
         day: 1,
     });
     const [renderMode, setRenderMode] = useState(dateUtils.UNIT.DAY);
-    console.log(TAG, renderedDate.month, initialDate);
+    const [isCalendarVisible, setIsCalendarVisible] = useState(false);
+
+    console.log(TAG, `Render date ${selectedDate}`);
 
     useEffect(() => {
         if (date) {
@@ -43,7 +45,8 @@ const DatePicker = ({ date }) => {
     };
 
     const CalendarDay = () => {
-        const days = dateUtils.genDaysArray(renderedDate.year, renderedDate.month, isSelected?selectedDate:"");
+        const {year, month} = renderedDate;
+        const days = dateUtils.genDaysArray(year, month, isSelected?selectedDate:"");
         const weekDays = dateUtils.WEEKDAYS;
         return (
             <div className = "calendar">
@@ -57,7 +60,22 @@ const DatePicker = ({ date }) => {
                 </div>
                 <div className = "calendar-container day">
                     {days.map((day) => (
-                    <div key = {`${day.type}_${day.val}`} className={`day ${day.type}`}>
+                    <div key = {`${day.type}_${day.val}`} 
+                         className={`day ${day.type}`} 
+                         onClick={() => {
+                            let selected;
+                            if (day.type == 'next') {
+                                selected = dateUtils.parseDateFormat(year, month+1, day.val);
+                            } else if (day.type == 'prev') {
+                                selected = dateUtils.parseDateFormat(year, month-1, day.val);
+                            } else {
+                                selected = dateUtils.parseDateFormat(year, month, day.val);
+                            }
+                             
+                            console.log(TAG, `Selected ${selected}`);
+                            onDateChange(selected);
+                            setIsCalendarVisible(false);
+                        }}>
                         {day.val}
                     </div>
                     ))}
@@ -74,7 +92,12 @@ const DatePicker = ({ date }) => {
                 <CalendarControlBar unit = {dateUtils.UNIT.MONTH}/>
                 <div className = "calendar-container month">
                     {months.map((month, idx) => (
-                        <div key = { `month_${idx}`} className={`month ${month.type}`}>
+                        <div key = { `month_${idx}`} className={`month ${month.type}`} onClick = {
+                            () => {
+                                console.log(TAG, `Selected month ${idx+1}`)
+                                setRenderMode(dateUtils.UNIT.DAY);
+                                setRenderedDate({...renderedDate, month: idx+1});
+                            }}>
                             {month.val}
                         </div>
                     ))}
@@ -91,7 +114,12 @@ const DatePicker = ({ date }) => {
                 <CalendarControlBar unit = {dateUtils.UNIT.YEAR}/>
                 <div className = "calendar-container year">
                     {years.map((year, idx) => (
-                        <div key = { `year_${idx}`} className={`year ${year.type}`}>
+                        <div key = { `year_${idx}`} className={`year ${year.type}`} onClick = {
+                            () => {
+                                console.log(TAG, `Selected month ${idx+1}`)
+                                setRenderMode(dateUtils.UNIT.MONTH);
+                                setRenderedDate({...renderedDate, year: year.val});
+                            }}>
                             {year.val}
                         </div>
                     ))}
@@ -164,8 +192,27 @@ const DatePicker = ({ date }) => {
 
     return (
       <div className = "date-picker">
-        <input type="text" placeholder={selectedDate} />
-        {renderCalendar()}
+        <div className = "input-container"
+            onClick={()=>{
+                setIsCalendarVisible(true);
+            }}>
+            <img className = "icon" src = {calendarIcon} />
+            <input type="text" placeholder={initialDate} maxLength={10} value={selectedDate}       
+                onChange={(e)=>{
+                    const regexYearMonth = /^\d{4}-(\d{1,2})$/; 
+                    let inputValue = e.target.value;
+                    inputValue = inputValue.replace(/[^0-9-]/g, "");
+                    setSelectedDate(inputValue);
+
+                    // if full format pass
+                    if (dateUtils.isValidDate(inputValue)) {
+                        setRenderedDate(dateUtils.getYearMonthDay(inputValue));
+                        setIsCalendarVisible(false);
+                    }
+                    console.log(TAG, `Input ${inputValue}`);
+                }}/>
+        </div>
+        {isCalendarVisible && renderCalendar()}
       </div>
     );
   };

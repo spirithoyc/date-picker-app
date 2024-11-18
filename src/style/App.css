@@ -1,3 +1,28 @@
 body {
-    font-family: sans-serif
+    font-family: sans-serif;
+}
+
+.main-container {
+    margin-left: 20%;
+    margin-right: 20%;
+    display: block;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.date-container div {
+    flex: 1;
+}
+
+.date-container span {
+    font-size: 12pt;
+    margin: 2px;
+}
+
+span.alert {
+    font-size: 10pt;
+    color: red;
 }

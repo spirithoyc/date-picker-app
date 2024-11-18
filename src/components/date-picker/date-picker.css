@@ -1,7 +1,37 @@
-.date-picker input {
+.date-picker {
+    padding: 2px;
+}
+
+.input-container {
+    border: #eee solid thin;
     border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    width: 270px;
     height: 30px;
+    justify-items: center;
+    align-items: center;
+    padding: 5px;
     margin-bottom: 2px;
+}
+
+.input-container ico {
+    flex: 1;
+    height: 30px;
+}
+
+.input-container input {
+    flex: 3;
+    border: none;
+    height: 30px;
+    font-size: 12pt;
+    padding-left: 2px;
+}
+
+.input-container input:focus {
+    border: none;
+    outline: none;
+    background-color: #eee;
 }
 
 .calendar {
@@ -51,11 +81,8 @@
     text-align: center;
 }
 
-.calendar-container {
-    flex:6;
-}
-
 .calendar-container.day {
+    flex: 6;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -87,6 +114,7 @@
 .calendar-container.month,
 .calendar-container.year
 {
+    flex: 7;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
