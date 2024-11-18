@@ -8,18 +8,21 @@ const App = () => {
     const [dateBegin, setDateBegin] = useState(initialDate);
     const [dateEnd, setDateEnd] = useState(initialDate);
     const [isAlertVisible, setIsAlertVisible] = useState(false);    
+    const [isStartCalVisible, setIsStartCalVisible] = useState(false);
+    const [isEndCalVisible, setIsEndCalVisible] = useState(false);
 
+    console.log(`isStartCalVisible ${isStartCalVisible} isEndCalVisible ${isEndCalVisible}`)
     useEffect(() => {
         if (dateBegin && dateEnd) {
             isValidDateRange(dateBegin, dateEnd);
         }
-    }, [dateBegin, dateEnd]);
+    }, [dateBegin, dateEnd, isStartCalVisible, isEndCalVisible]);
 
 
     const isValidDateRange = (dateBegin, dateEnd) => {
         let d1 = new Date(dateBegin);
         let d2 = new Date(dateEnd);
-        console.log(dateBegin, dateEnd);
+        //console.log(dateBegin, dateEnd);
         if (d2 < d1) {
             console.log('show alert');
             setIsAlertVisible(true);
@@ -32,17 +35,22 @@ const App = () => {
         <div className = "main-container">
             <h2>Date Picker</h2>
             <div className = "date-container">
-                <div>
+                <div onClick={()=>{
+                    setIsStartCalVisible(true);
+                    setIsEndCalVisible(false);
+                }}>
                     <span className = "date start">Begin date</span>
-                    <DatePicker date = {dateBegin} onDateChange = {(date)=>{
+                    <DatePicker date = {dateBegin} showCalendar={isStartCalVisible} onDateChange = {(date)=>{
                         setDateBegin(date);
                     }}/>
                 </div>
-                <div>
+                <div onClick={()=>{
+                    setIsStartCalVisible(false);
+                    setIsEndCalVisible(true);
+                }}>
                     <span className = "date end">End date</span>
-                    <DatePicker date = {dateEnd} onDateChange = {(date)=>{
+                    <DatePicker date = {dateEnd} showCalendar={isEndCalVisible} onDateChange = {(date)=>{
                         setDateEnd(date);
-                        isValidDateRange(dateBegin, dateEnd);
                     }}/>
                     {isAlertVisible && <span className = "alert">End date shouldn't be earlier than Begin date</span>}
                 </div>

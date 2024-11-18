@@ -43,19 +43,24 @@
     border-radius: 2px;
 }
 
-.calendar-control-bar {
+/* 通用样式 */
+.calendar-control-bar, 
+.calendar-header-row {
     width: 100%;
-    flex:1;
     display: flex;
     flex-direction: row;
 }
 
-.calendar-control-bar div {
+.calendar-control-bar div, 
+.calendar-header-row div {
+    flex: 1;
     height: 100%;
     text-align: center;
     align-content: center;
     align-self: center;
-    flex: 1;
+}
+
+.calendar-control-bar div {
     cursor: pointer;
 }
 
@@ -67,41 +72,50 @@
     background-color: #eee;
 }
 
-.calendar-header-row {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-
-.calendar-header-row div {
-    flex:1;
-    align-content: center;
-    align-self: center;
-    text-align: center;
+.calendar-container.day, 
+.calendar-container.month, 
+.calendar-container.year {
+    display: grid;
+    place-items: center;
 }
 
 .calendar-container.day {
     flex: 6;
-    display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    place-items: center;
 }
 
-.calendar-container.day div {
-    height: 32px;
-    width: 32px;
+.calendar-container.month, 
+.calendar-container.year {
+    flex: 7;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.calendar-container.day div, 
+.calendar-container.month div, 
+.calendar-container.year div {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-/* .calendar-container.day  div.curr {
 
-} */
+.calendar-container.day div {
+    height: 32px;
+    width: 32px;
+}
 
-.calendar-container.day div.selected {
+.calendar-container.month div, 
+.calendar-container.year div {
+    height: 40px;
+    width: 40px;
+}
+
+/* 通用选中样式 */
+.calendar-container.day div.selected, 
+.calendar-container.month div.selected, 
+.calendar-container.year div.selected {
     color: #fff;
     background-color: #db3d44;
     border-radius: 50%;
@@ -111,88 +125,9 @@
     color: #db3d44;
 }
 
-.calendar-container.month,
-.calendar-container.year
-{
-    flex: 7;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    place-items: center;
-}
-
-.calendar-container.month div,
-.calendar-container.year div {
-    height: 40px;
-    width: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.calendar-container.month div.selected,
-.calendar-container.year div.selected {
-    color: #fff;
-    background-color: #db3d44;
-    border-radius: 50%;
-}
-
-.calendar-container.day div.prev,
-.calendar-container.day div.next,
-.calendar-container.year div.prev,
+.calendar-container.day div.prev, 
+.calendar-container.day div.next, 
+.calendar-container.year div.prev, 
 .calendar-container.year div.next {
     color: #eee;
 }
-
-
-/*
-.calendar-container.month {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    cursor: pointer;
-}
-.canlendar-row {
-    color:white;
-    height: 40px;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    font-size: small;
-}
-.calendar-column {
-    color:black;
-    background-color: #FFFFFF;
-    flex:1;
-    text-align: center;
-    padding: 10px;
-    margin: 1px;
-    vertical-align: middle;
-}
-.calendar-column.paging {
-    flex:1;
-}
-.calendar-column.title {
-    flex:5;
-}
-.calendar-column.header {
-    font-weight: bold;
-}
-.calendar-column:hover {
-    cursor: pointer;
-}
-.calendar-column.title:hover, 
-.calendar-column.title.selected {
-    background-color: #EEEEEE;
-    border-radius: 5%;
-}
-.calendar-column.date:hover {
-    background-color: #df465060;
-    border-radius: 50%;
-}
-.calendar-column.selected {
-    background-color: #db3d44;
-    color: white;
-    border-radius: 50%;
-} */

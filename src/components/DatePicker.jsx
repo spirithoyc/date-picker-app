@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './date-picker/date-picker.css';
 import dateUtils from './date-picker/date-picker-utils';
 import calendarIcon from '../resources/images/ico_calendar.png';
-const DatePicker = ({ date, onDateChange }) => {
+const DatePicker = ({ date, showCalendar, onDateChange }) => {
     const TAG = 'DatePicker';
     const initialDate = date || dateUtils.getCurrDate(); // yyyy-mm-dd
     const [selectedDate, setSelectedDate] = useState(initialDate);
@@ -13,9 +13,9 @@ const DatePicker = ({ date, onDateChange }) => {
         day: 1,
     });
     const [renderMode, setRenderMode] = useState(dateUtils.UNIT.DAY);
-    const [isCalendarVisible, setIsCalendarVisible] = useState(false);
+    const [isCalendarVisible, setIsCalendarVisible] = useState(showCalendar);
 
-    console.log(TAG, `Render date ${selectedDate}`);
+    console.log(TAG, `Render date ${selectedDate} showCalendar ${showCalendar}`);
 
     useEffect(() => {
         if (date) {
@@ -28,7 +28,7 @@ const DatePicker = ({ date, onDateChange }) => {
             });
             setRenderMode(dateUtils.UNIT.DAY);
         }
-    }, [date]);
+    }, [date, showCalendar]);
 
 
   
@@ -212,7 +212,7 @@ const DatePicker = ({ date, onDateChange }) => {
                     console.log(TAG, `Input ${inputValue}`);
                 }}/>
         </div>
-        {isCalendarVisible && renderCalendar()}
+        {isCalendarVisible && showCalendar && renderCalendar()}
       </div>
     );
   };
