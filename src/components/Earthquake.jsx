@@ -6,20 +6,36 @@ const EarthQuake = ({ beginDate, endDate }) => {
     const [earthquakeData, setEarthquakeData] = useState([]);
     const [visibleData, setVisibleData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isHugeDateRange, setIsHugeDateRange] = useState(false);
     const [displayCount, setDisplayCount] = useState(20);
+    const TIMEOUT_SECONDS = 10;
 
     useEffect(() => {
         if (!beginDate || !endDate) return;
 
-        setIsLoading(true);
-        fetchEarthquakeData(beginDate, endDate)
-            .then((data) => {
-                setEarthquakeData(data);
-                setVisibleData(data.slice(0, displayCount));
-                setIsLoading(false);
-            })
-            .catch(() => setIsLoading(false));
+        if (isValidDateRange(beginDate, endDate, 30)) {
+            setIsLoading(true);
+            setIsHugeDateRange(false);
+
+            fetchEarthquakeData(beginDate, endDate, TIMEOUT_SECONDS * 1000)
+                .then((data) => {
+                    setEarthquakeData(data);
+                    setVisibleData(data.slice(0, displayCount));
+                    setIsLoading(false);
+                })
+                .catch(() => setIsLoading(false));
+        } else {
+            setIsHugeDateRange(true);
+        }
     }, [beginDate, endDate]);
+
+    const isValidDateRange = (d1, d2, periodDay) => {
+        console.log(d1, d2,periodDay );
+        const begin = new Date(d1);
+        const end = new Date(d2);
+        const daysDifference = Math.ceil((end - begin) / (1000 * 60 * 60 * 24));
+        return (daysDifference <= periodDay);
+    }
 
     const handleShowMore = () => {
         const nextCount = Math.min(displayCount + 10, earthquakeData.length);
@@ -29,7 +45,10 @@ const EarthQuake = ({ beginDate, endDate }) => {
 
     return (
         <div>
-            {isLoading ? (
+            {isHugeDateRange ? (
+                <p>Date range must less than 30 days</p>
+            ):
+            (isLoading ? (
                 <p>Loading...</p>
             ) : (
                 <>
@@ -63,7 +82,7 @@ const EarthQuake = ({ beginDate, endDate }) => {
                         {displayCount >= earthquakeData.length ? "No More Data" : "More"}
                     </button>
                 </>
-            )}
+            ))}
         </div>
     );
 };

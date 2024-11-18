@@ -214,7 +214,18 @@ const DatePicker = ({ date, showCalendar, onDateChange }) => {
                 }}/>
         </div>
         {isCalendarVisible && showCalendar && renderCalendar()}
-      </div>
+        {isCalendarVisible && showCalendar && 
+            <div className = "quick-link"
+                onClick={()=>{
+                    const today = dateUtils.getCurrDate();
+                    const todayYMD = dateUtils.getYearMonthDay(today);
+                    setIsCalendarVisible(false);
+                    setRenderedDate(todayYMD);
+                    onDateChange(today);
+                }}>
+                select today
+            </div>}
+        </div>
     );
   };
   

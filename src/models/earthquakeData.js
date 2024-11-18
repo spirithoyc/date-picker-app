@@ -1,4 +1,4 @@
-export const fetchEarthquakeData = (dateBegin, dateEnd) => {
+export const fetchEarthquakeData = (dateBegin, dateEnd, timeout = 10000) => {
     const url = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${dateBegin}&endtime=${dateEnd}`;
 
     const parseEarthquakeData = (data) => {
@@ -19,9 +19,18 @@ export const fetchEarthquakeData = (dateBegin, dateEnd) => {
         });
     }
 
+
+
     return new Promise((resolve, reject) => {
+
+        // Timeout Promise
+        const timer = setTimeout(() => {
+            reject(new Error("Request timed out"));
+        }, timeout);
+
         fetch(url)
             .then((response) => {
+                clearTimeout(timer);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -32,6 +41,7 @@ export const fetchEarthquakeData = (dateBegin, dateEnd) => {
                 resolve(parsedData);
             })
             .catch((error) => {
+                clearTimeout(timer);
                 console.error("Error fetching earthquake data:", error);
                 reject(error);
             });

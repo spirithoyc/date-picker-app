@@ -43,7 +43,6 @@
     border-radius: 2px;
 }
 
-/* 通用样式 */
 .calendar-control-bar, 
 .calendar-header-row {
     width: 100%;
@@ -112,7 +111,6 @@
     width: 40px;
 }
 
-/* 通用选中样式 */
 .calendar-container.day div.selected, 
 .calendar-container.month div.selected, 
 .calendar-container.year div.selected {
@@ -130,4 +128,10 @@
 .calendar-container.year div.prev, 
 .calendar-container.year div.next {
     color: #eee;
+}
+
+.quick-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }
