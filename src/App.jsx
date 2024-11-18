@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style/app.css';
 import DatePicker from './components/DatePicker';
 import dateUtils from './components/date-picker/date-picker-utils';
+import Earthquake from "./components/Earthquake";
 
 const App = () => {
     const initialDate = dateUtils.getCurrDate(); // yyyy-mm-dd
@@ -55,6 +56,8 @@ const App = () => {
                     {isAlertVisible && <span className = "alert">End date shouldn't be earlier than Begin date</span>}
                 </div>
             </div>
+            <h2>Earthquake data</h2>
+            <Earthquake beginDate={dateBegin} endDate={dateEnd} />
         </div>
     );
 }

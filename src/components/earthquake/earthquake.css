@@ -1,0 +1,44 @@
+.earth-quake-data {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.earth-quake-data th,
+.earth-quake-data td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.earth-quake-data th {
+    background-color: #f4f4f4;
+}
+
+.load-more {
+    background-color: transparent;
+    color: blue;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.load-more:disabled {
+    color: gray;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .earth-quake-data {
+        font-size: 12px;
+    }
+
+    .earth-quake-data th,
+    .earth-quake-data td {
+        padding: 4px;
+    }
+
+    .load-more {
+        font-size: 12px;
+    }
+}
