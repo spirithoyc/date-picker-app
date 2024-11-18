@@ -1,6 +1,9 @@
 # date-picker-app
 
-# How to run 
+## Demo
+[Demo page](https://spirithoyc.github.io/date-picker-app/)
+
+## How to run 
 1. Clone the repository and start npm project
    ```bash
    git clone git@github.com:spirithoyc/date-picker-app.git
@@ -10,7 +13,7 @@
    ```
 2. Open browser http://localhost:3000
 
-# Folder structure
+## Folder structure
 
 - src
     - App.jsx
@@ -24,9 +27,9 @@
         - App.css
 
 
-# Component date-picker
+## Component date-picker
 ![alt text](image-1.png)
-## composed
+### composed
 - `<div class="date-picker"/>`
   - `<input type="text" placeholder="yyyy-mm-dd"/>`
   - `<div class="calendar"/>`
@@ -39,7 +42,7 @@
     - `<div class="calendar-container"></div>`  
         **Description**: Contains the calendar view, such as days, months, or years.
 
-## functions
+### functions
 ```
 renderCalendar(data:object, unit:str)
 renderCalendarDay(data:object)
@@ -55,7 +58,7 @@ getCurrMonth():int //0~12
 getWeekDayIndex(date:str):int //0~6
 getDaysOfMonth(date:str):int //28~31
 ```
-# Learning Journey 
+## Learning Journey 
 
 ### Stage 0
 Recap pure JavaScript, CSS, and jQuery basics.  
