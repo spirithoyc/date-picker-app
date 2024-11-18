@@ -208,6 +208,7 @@ const DatePicker = ({ date, showCalendar, onDateChange }) => {
                     if (dateUtils.isValidDate(inputValue)) {
                         setRenderedDate(dateUtils.getYearMonthDay(inputValue));
                         setIsCalendarVisible(false);
+                        onDateChange(inputValue);
                     }
                     console.log(TAG, `Input ${inputValue}`);
                 }}/>

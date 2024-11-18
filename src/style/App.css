@@ -26,3 +26,34 @@ span.alert {
     font-size: 10pt;
     color: red;
 }
+
+@media (max-width: 768px) {
+    .main-container {
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .date-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .date-container div {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .date-container div span {
+        font-size: 14pt;
+    }
+
+    .calendar {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+}
